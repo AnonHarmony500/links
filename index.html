@@ -1,6 +1,116 @@
-<html>
-  <body>
-    <h1><h1>Nemesis Links</h1>
-<p>Short links for Discord newsroom</p></h1>
-  </body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Nemesis Links</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: "Segoe UI", sans-serif;
+      background: linear-gradient(135deg, #ffd6e8, #d6e0ff);
+      color: #333;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.6);
+      backdrop-filter: blur(15px);
+      border-radius: 20px;
+      padding: 40px;
+      width: 90%;
+      max-width: 500px;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 2.5rem;
+      color: #5a5a7a;
+    }
+
+    p {
+      margin-top: 10px;
+      font-size: 1rem;
+      color: #666;
+    }
+
+    .input-group {
+      margin-top: 25px;
+      display: flex;
+      gap: 10px;
+    }
+
+    input {
+      flex: 1;
+      padding: 12px;
+      border-radius: 12px;
+      border: none;
+      outline: none;
+      background: #ffffffaa;
+      font-size: 0.95rem;
+    }
+
+    button {
+      padding: 12px 18px;
+      border-radius: 12px;
+      border: none;
+      background: #cdb4ff;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.2s ease;
+    }
+
+    button:hover {
+      background: #b89cff;
+      transform: translateY(-1px);
+    }
+
+    .links {
+      margin-top: 25px;
+      font-size: 0.85rem;
+      color: #888;
+    }
+
+    .links span {
+      display: block;
+      margin-top: 5px;
+    }
+
+    footer {
+      margin-top: 20px;
+      font-size: 0.75rem;
+      color: #aaa;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="card">
+    <h1>Nemesis Links</h1>
+    <p>curated signals, fragments, transmissions</p>
+
+    <div class="input-group">
+      <input placeholder="paste link (not functional... yet)" />
+      <button>shorten</button>
+    </div>
+
+    <div class="links">
+      <span>example:</span>
+      <span>/signal-01</span>
+      <span>/event-223</span>
+      <span>/breach</span>
+    </div>
+
+    <footer>
+      nothing is random
+    </footer>
+  </div>
+</body>
 </html>
