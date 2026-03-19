@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>News Feed</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: "Segoe UI", sans-serif;
+      background: linear-gradient(135deg, #ffcce6, #f3d9ff, #d6f0ff);
+      display: flex;
+      justify-content: center;
+    }
+
+    .container {
+      max-width: 700px;
+      width: 90%;
+      padding: 30px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #5a5a7a;
+    }
+
+    .post {
+      background: rgba(255,255,255,0.6);
+      backdrop-filter: blur(10px);
+      padding: 15px;
+      border-radius: 15px;
+      margin-top: 20px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    .title {
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    .snippet {
+      font-size: 0.9rem;
+      color: #555;
+    }
+
+    a {
+      display: inline-block;
+      margin-top: 10px;
+      color: #c77dff;
+      text-decoration: none;
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>News Feed</h1>
+
+    <div class="post">
+      <div class="title">Ukraine Offensive Update</div>
+      <div class="snippet">Reports indicate increased activity in eastern regions...</div>
+      <a href="/ukr">read more →</a>
+    </div>
+
+    <div class="post">
+      <div class="title">Election Developments</div>
+      <div class="snippet">New polling data suggests shifts in key states...</div>
+      <a href="/election">read more →</a>
+    </div>
+
+  </div>
+</body>
+</html>
