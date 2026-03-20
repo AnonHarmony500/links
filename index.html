@@ -1,105 +1,83 @@
-<!DOCTYPE html>
+.<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Nemesis Links</title>
   <link rel="icon" type="image/png" href="/favicon1.png">
-<div class="navbar">
-  <div class="nav-inner">
-    <span class="logo">✧ Nemesis ✧</span>
-
-    <div class="nav-links">
-      <a href="/">home</a>
-      <a href="/news">news</a>
-    </div>
-  </div>
-</div>
-
-  
   <style>
+    /* body and layout */
     body {
-  margin: 0;
-  font-family: "Segoe UI", sans-serif;
-  background: linear-gradient(135deg, #ffcce6, #f3d9ff, #d6f0ff);
-}
+      margin: 0;
+      font-family: "Segoe UI", sans-serif;
+      background: linear-gradient(135deg, #ffcce6, #f3d9ff, #d6f0ff);
+    }
 
-.container {
-  max-width: 700px;
-  width: 90%;
-  padding: 80px 30px 30px; /* extra top padding for navbar */
-  margin: auto;
-}
+    /* sticky navbar */
+    .navbar {
+      position: sticky;
+      top: 0;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.5);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 0 30px rgba(255, 182, 193, 0.4);
+      z-index: 1000;
+    }
 
-.navbar {
-  box-shadow: 0 0 30px rgba(255, 182, 193, 0.4);
-}
+    .nav-inner {
+      max-width: 900px;
+      margin: auto;
+      padding: 10px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
 
-@media (max-width: 500px) {
-  .logo {
-    font-size: 0.9rem;
-  }
+    .logo {
+      font-weight: bold;
+      color: #5a5a7a;
+    }
 
-  .nav-links a {
-    margin-left: 10px;
-    font-size: 0.9rem;
-  }
-}
-    
-    .mascot {
-  width: 90px;
-  margin-top: 15px;
-  border-radius: 50%;
-  box-shadow: 0 0 15px rgba(255, 182, 193, 0.6);
-}
-    
+    .nav-links a {
+      margin-left: 15px;
+      text-decoration: none;
+      color: #c77dff;
+      font-weight: bold;
+      transition: 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      color: #a855f7;
+    }
+
+    .nav-links a.active {
+      color: #ff8acb;
+      text-shadow: 0 0 8px rgba(255, 138, 203, 0.6);
+    }
+
+    /* main container */
+    .container {
+      max-width: 500px;
+      width: 90%;
+      margin: 100px auto 50px; /* push below navbar */
+    }
+
     .card {
       background: rgba(255, 255, 255, 0.6);
       backdrop-filter: blur(15px);
       border-radius: 20px;
       padding: 40px;
-      width: 90%;
-      max-width: 500px;
       text-align: center;
       box-shadow: 0 0 25px rgba(255, 182, 193, 0.5);
     }
 
-.navbar {
-  position: sticky;
-  top: 0;
-  width: 100%;
-  background: rgba(255, 255, 255, 0.5);
-  backdrop-filter: blur(12px);
-  box-shadow: 0 0 20px rgba(255, 182, 193, 0.3);
-  z-index: 1000;
-}
+    .mascot {
+      width: 90px;
+      margin-top: 15px;
+      border-radius: 50%;
+      box-shadow: 0 0 15px rgba(255, 182, 193, 0.6);
+    }
 
-.nav-inner {
-  max-width: 900px;
-  margin: auto;
-  padding: 10px 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.logo {
-  font-weight: bold;
-  color: #5a5a7a;
-}
-
-.nav-links a {
-  margin-left: 15px;
-  text-decoration: none;
-  color: #c77dff;
-  font-weight: bold;
-  transition: 0.2s ease;
-}
-
-.nav-links a:hover {
-  color: #a855f7;
-}
-    
     h1 {
       margin: 0;
       font-size: 2.5rem;
@@ -112,16 +90,6 @@
       color: #666;
     }
 
-    @media (max-width: 500px) {
-  .input-group {
-    flex-direction: column;
-  }
-
-  input, button {
-    width: 100%;
-  }
-}
-    
     .input-group {
       margin-top: 25px;
       display: flex;
@@ -154,15 +122,15 @@
       transform: translateY(-1px);
     }
 
-.news-button {
-  margin-top: 15px;
-  background: #a0c4ff;
-}
+    .news-button {
+      margin-top: 15px;
+      background: #a0c4ff;
+    }
 
-.news-button:hover {
-  background: #89b4ff;
-}
-    
+    .news-button:hover {
+      background: #89b4ff;
+    }
+
     .links {
       margin-top: 25px;
       font-size: 0.85rem;
@@ -179,35 +147,65 @@
       font-size: 0.75rem;
       color: #aaa;
     }
+
+    /* mobile tweaks */
+    @media (max-width: 500px) {
+      .input-group {
+        flex-direction: column;
+      }
+      input, button {
+        width: 100%;
+      }
+      .logo {
+        font-size: 0.9rem;
+      }
+      .nav-links a {
+        margin-left: 10px;
+        font-size: 0.9rem;
+      }
+    }
   </style>
 </head>
-
 <body>
-  <div class="card">
-<h1>Nemesis Links</h1>
-<p>curated signals, fragments, transmissions</p>
-
-<img src="mascot.png" class="mascot">
-    
-    <div class="input-group">
-      <input placeholder="paste link (not functional yet honey <3)" />
-      <button>shorten</button>
+  <!-- sticky navbar -->
+  <div class="navbar">
+    <div class="nav-inner">
+      <span class="logo">✧ Nemesis ✧</span>
+      <div class="nav-links">
+        <a href="/" class="active">home</a>
+        <a href="/news">news</a>
+      </div>
     </div>
+  </div>
 
-<a href="/news">
-  <button class="news-button">view news feed ✧</button>
-</a>
-    
-    <div class="links">
-      <span>example:</span>
-      <span>/middle_east-01</span>
-      <span>/ukraine-223</span>
-      <span>/america-51</span>
+  <!-- main content -->
+  <div class="container">
+    <div class="card">
+      <h1>Nemesis Links</h1>
+      <p>curated signals, fragments, transmissions</p>
+
+      <img src="mascot.png" class="mascot">
+
+      <div class="input-group">
+        <input placeholder="paste link (not functional yet honey <3)" />
+        <button>shorten</button>
+      </div>
+
+      <a href="/news">
+        <button class="news-button">view news feed ✧</button>
+      </a>
+
+      <div class="links">
+        <span>example:</span>
+        <span>/middle_east-01</span>
+        <span>/ukraine-223</span>
+        <span>/america-51</span>
+      </div>
+
+      <footer>
+        nothing is random and nothing will be forgiven
+      </footer>
     </div>
-
-    <footer>
-      nothing is random and nothing will be forgiven
-    </footer>
   </div>
 </body>
 </html>
