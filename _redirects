@@ -1,4 +1,5 @@
-/test https://example.com 301!
+/test https://example.com 
+/news/america-12 https://www.yahoo.com/news/articles/lackland-instructor-charged-having-sex-155832685.html?guccounter=1&guce_referrer=aHR0cHM6Ly93d3cuZ29vZ2xlLmNvbS8&guce_referrer_sig=AQAAAN4ygOGEwbSexJmf_Vq08DL4D7QyhggQX5PPQINmb8Orj7Nq7fhFtE4hpO6itoefL2wR8nb00gEV2yHSKcU7rBSi_0cssxczYXfK4jazd24VlxE0BlXgXUgu5qg3TtUEbKu1XRzNbUFGFYTjWCtYwr-p_NaOeqb521FQnsmfO2CI
 /news/iran_war_live https://www.reuters.com/world/iran-war-live-updates-qatar-gas-price-hegseth-briefing-trump-takaichi-meeting-2026-03-19/
 /news/middle_east2 https://www.reuters.com/legal/government/us-senators-grill-trump-intelligence-team-weeks-into-iran-war-2026-03-18/
 /news/america6 https://www.reuters.com/business/energy/us-poised-waive-summer-gasoline-regulations-ease-prices-sources-say-2026-03-18/
