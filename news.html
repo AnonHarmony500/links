@@ -1,39 +1,95 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>News Feed</title>
-  <a href="/" class="back-button">← back ✧</a>
+  <link rel="icon" type="image/png" href="/favicon1.png">
 
-<div class="navbar">
-  <div class="nav-inner">
-    <span class="logo">✧ Nemesis ✧</span>
-
-    <div class="nav-links">
-      <a href="/">home</a>
-      <a href="/news">news</a>
-    </div>
-  </div>
-</div>
-  
   <style>
     body {
-  margin: 0;
-  font-family: "Segoe UI", sans-serif;
-  background: linear-gradient(135deg, #ffcce6, #f3d9ff, #d6f0ff);
-}
+      margin: 0;
+      font-family: "Segoe UI", sans-serif;
+      background: linear-gradient(135deg, #ffcce6, #f3d9ff, #d6f0ff);
+    }
 
+    /* Sticky navbar */
+    .navbar {
+      position: sticky;
+      top: 0;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.5);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 0 30px rgba(255, 182, 193, 0.4);
+      z-index: 1000;
+    }
+
+    .nav-inner {
+      max-width: 900px;
+      margin: auto;
+      padding: 10px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .back-button {
+      display: inline-block;
+      padding: 6px 10px;
+      border-radius: 12px;
+      background: #a0c4ff;
+      color: white;
+      font-weight: bold;
+      text-decoration: none;
+      font-size: 0.85rem;
+      transition: 0.2s ease;
+    }
+
+    .back-button:hover {
+      background: #89b4ff;
+    }
+
+    .logo {
+      font-weight: bold;
+      color: #5a5a7a;
+      font-size: 1.1rem;
+    }
+
+    .nav-links a {
+      margin-left: 15px;
+      text-decoration: none;
+      color: #c77dff;
+      font-weight: bold;
+      transition: 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      color: #a855f7;
+    }
+
+    .nav-links a.active {
+      color: #ff8acb;
+      text-shadow: 0 0 8px rgba(255, 138, 203, 0.6);
+    }
+
+    /* Main content container */
     .container {
-  max-width: 700px;
-  width: 90%;
-  padding: 80px 30px 30px; /* extra top padding for navbar */
-  margin: auto;
-}
+      max-width: 700px;
+      width: 90%;
+      margin: 30px auto 50px;
+      padding: 0 10px; /* consistent horizontal padding */
+    }
 
     h1 {
       text-align: center;
       color: #5a5a7a;
+      margin: 0;
     }
 
     .post {
@@ -50,103 +106,68 @@
       margin-bottom: 5px;
     }
 
-.navbar {
-  position: sticky;
-  top: 0;
-  width: 100%;
-  background: rgba(255, 255, 255, 0.5);
-  backdrop-filter: blur(12px);
-  box-shadow: 0 0 20px rgba(255, 182, 193, 0.3);
-  z-index: 1000;
-}
-
-.nav-inner {
-  max-width: 900px;
-  margin: auto;
-  padding: 10px 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.logo {
-  font-weight: bold;
-  color: #5a5a7a;
-}
-
-.nav-links a {
-  margin-left: 15px;
-  text-decoration: none;
-  color: #c77dff;
-  font-weight: bold;
-  transition: 0.2s ease;
-}
-
-.nav-links a:hover {
-  color: #a855f7;
-}
-
-.navbar {
-  box-shadow: 0 0 30px rgba(255, 182, 193, 0.4);
-}
-
-@media (max-width: 500px) {
-  .logo {
-    font-size: 0.9rem;
-  }
-
-  .nav-links a {
-    margin-left: 10px;
-    font-size: 0.9rem;
-  }
-}
-    
     .snippet {
       font-size: 0.9rem;
       color: #555;
     }
 
-.back-button {
-  display: inline-block;
-  margin-top: 10px;
-  color: #c77dff;
-  text-decoration: none;
-  font-weight: bold;
-  font-size: 0.9rem;
-  transition: 0.2s ease;
-}
-
-.back-button:hover {
-  color: #a855f7;
-  transform: translateX(-2px);
-}
-    
-    a {
+    a.read-more {
       display: inline-block;
       margin-top: 10px;
       color: #c77dff;
       text-decoration: none;
       font-weight: bold;
     }
+
+    a.read-more:hover {
+      color: #a855f7;
+    }
+
+    /* Responsive tweaks */
+    @media (max-width: 500px) {
+      .nav-inner {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+      }
+      .nav-links {
+        display: flex;
+        gap: 10px;
+      }
+    }
   </style>
 </head>
 
 <body>
+  <!-- Sticky Navbar with back button inside -->
+  <div class="navbar">
+    <div class="nav-inner">
+      <div class="nav-left">
+        <a href="/" class="back-button">← home</a>
+        <span class="logo">✧ Nemesis ✧</span>
+      </div>
+      <div class="nav-links">
+        <a href="/" >home</a>
+        <a href="/news" class="active">news</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main content -->
   <div class="container">
     <h1>News Feed</h1>
 
     <div class="post">
       <div class="title">Ukraine Offensive Update</div>
       <div class="snippet">Reports indicate increased activity in eastern regions...</div>
-      <a href="/ukr">read more →</a>
+      <a href="/ukr" class="read-more">read more →</a>
     </div>
 
     <div class="post">
       <div class="title">Election Developments</div>
       <div class="snippet">New polling data suggests shifts in key states...</div>
-      <a href="/election">read more →</a>
+      <a href="/election" class="read-more">read more →</a>
     </div>
-
   </div>
 </body>
 </html>
