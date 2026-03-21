@@ -2,7 +2,7 @@ exports.handler = async (event) => {
   const { category, url } = JSON.parse(event.body);
 
   const BIN_ID = 69beeb75b7ec241ddc8d1815;
-  const API_KEY = $2a$10$Fk35Luoxc3X.LjEWROkpI.hrsnL0KYwRNlBJbOACT9iMbPAv/t7M.;
+  const API_KEY = $2a$10$3UHIk7wd7VT0EzjZYDehUOTQTE6nGNrmm.6mr6YjI0gngq10BBjNC;
 
   // Get current data
   const res = await fetch(`https://api.jsonbin.io/v3/b/${BIN_ID}/latest`, {
