@@ -113,34 +113,34 @@
       padding: 12px 18px;
       border-radius: 12px;
       border: none;
-      background: #ffb3d9;
-      color: white;
       font-weight: bold;
       cursor: pointer;
       transition: 0.2s ease;
     }
 
-    button:hover {
-      transform: translateY(-1px);
-    }
-
+    /* shorten button */
     .shorten-btn {
       background: #ffb3d9;
+      color: white;
     }
 
     .shorten-btn:hover {
       background: #ff99cc;
+      transform: translateY(-1px);
     }
 
+    /* news feed button */
     .news-button {
       margin-top: 15px;
       background: #a0c4ff;
+      color: white;
     }
 
     .news-button:hover {
       background: #89b4ff;
     }
 
+    /* result container */
     #result-container {
       display: none;
       margin-top: 15px;
@@ -155,15 +155,19 @@
       border-radius: 10px;
       font-weight: bold;
       color: #5a5a7a;
+      max-width: 220px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
 
     #copy-btn {
-      background: #ffb3ff; /* cute pastel pink */
-      transition: background 0.2s ease;
+      background: #ffb3ff;
+      width: 80px; /* fixed width to prevent shift */
     }
 
     #copy-btn:hover {
-      background: #ffa3ff; /* lighter pink on hover */
+      background: #ffa3ff;
     }
 
     .links {
@@ -293,7 +297,7 @@ function copyUrl() {
 
   setTimeout(() => {
     copyBtn.innerText = "Copy";
-  }, 1500); // revert after 1.5 seconds
+  }, 1500);
 }
 </script>
 </body>
