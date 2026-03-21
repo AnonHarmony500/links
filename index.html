@@ -118,16 +118,16 @@
       transition: 0.2s ease;
     }
 
-    /* shorten button */
-    .shorten-btn {
-      background: #ffb3d9;
-      color: white;
-    }
+   /* shorten button */
+.shorten-btn {
+  background: #ffb3d9; /* pastel pink */
+  color: white;         /* text color */
+}
 
     .shorten-btn:hover {
-      background: #ff99cc;
-      transform: translateY(-1px);
-    }
+  background: #ff99cc;
+  transform: translateY(-1px);
+}
 
     /* news feed button */
     .news-button {
@@ -161,14 +161,21 @@
       white-space: nowrap;
     }
 
-    #copy-btn {
-      background: #ffb3ff;
-      width: 80px; /* fixed width to prevent shift */
-    }
+   /* copy button */
+#copy-btn {
+  background: #ffb3d9; /* match shorten button */
+  color: white;         /* match text color */
+  width: 80px;          /* fixed width to prevent shift */
+  border-radius: 12px;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
 
     #copy-btn:hover {
-      background: #ffa3ff;
-    }
+  background: #ff99cc; /* match shorten hover */
+}
 
     .links {
       margin-top: 25px;
