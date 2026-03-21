@@ -227,7 +227,8 @@ async function shorten() {
 
   const data = await res.json();
 
-  document.getElementById("result").innerText = data.shortUrl;
+  console.log(data); // 👈 IMPORTANT
+  document.getElementById("result").innerText = data.shortUrl || "error";
 }
 </script>
 </html>
