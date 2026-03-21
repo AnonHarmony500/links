@@ -1,3 +1,4 @@
+/* /.netlify/functions/redirect 200
 /test https://example.com 
 /news/america-13 https://apnews.com/article/robert-mueller-fbi-director-trump-russia-investigation-7aca939dc25d4652815376f73e0f9aaf
 /news/america-12 https://www.yahoo.com/news/articles/lackland-instructor-charged-having-sex-155832685.html?guccounter=1&guce_referrer=aHR0cHM6Ly93d3cuZ29vZ2xlLmNvbS8&guce_referrer_sig=AQAAAN4ygOGEwbSexJmf_Vq08DL4D7QyhggQX5PPQINmb8Orj7Nq7fhFtE4hpO6itoefL2wR8nb00gEV2yHSKcU7rBSi_0cssxczYXfK4jazd24VlxE0BlXgXUgu5qg3TtUEbKu1XRzNbUFGFYTjWCtYwr-p_NaOeqb521FQnsmfO2CI
