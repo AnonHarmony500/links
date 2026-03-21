@@ -1,12 +1,13 @@
-.<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Nemesis Links</title>
-  <link rel="icon" type="image/png" href="/favicon1.png">
+  <link rel="icon" type="image/png" href="favicon1.png">
+
   <style>
-    /* body and layout */
+    /* body & layout */
     body {
       margin: 0;
       font-family: "Segoe UI", sans-serif;
@@ -59,7 +60,7 @@
     .container {
       max-width: 500px;
       width: 90%;
-      margin: 100px auto 50px; /* push below navbar */
+      margin: 100px auto 50px;
     }
 
     .card {
@@ -90,20 +91,37 @@
       color: #666;
     }
 
+    /* input group (dropdown + input + button) */
     .input-group {
       margin-top: 25px;
       display: flex;
       gap: 10px;
+      flex-wrap: wrap;
     }
 
-    input {
+    .input-group select,
+    .input-group input {
       flex: 1;
       padding: 12px;
       border-radius: 12px;
       border: none;
       outline: none;
-      background: #ffffffaa;
       font-size: 0.95rem;
+    }
+
+    select {
+      background: #ffd6f0;
+      color: #5a5a7a;
+      font-weight: bold;
+      transition: 0.2s ease;
+    }
+
+    select:focus {
+      box-shadow: 0 0 10px rgba(255, 138, 203, 0.6);
+    }
+
+    input {
+      background: #ffffffaa;
     }
 
     button {
@@ -148,12 +166,44 @@
       color: #aaa;
     }
 
+    /* shortened URL card */
+    #result-container {
+      display: none;
+      margin-top: 20px;
+      background: #ffd6f0;
+      padding: 15px;
+      border-radius: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: bold;
+      color: #5a5a7a;
+      box-shadow: 0 0 10px rgba(255, 138, 203, 0.6);
+      word-break: break-all;
+    }
+
+    #copy-btn {
+      padding: 6px 10px;
+      border-radius: 8px;
+      background: #ffb3d9;
+      border: none;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.2s ease;
+    }
+
+    #copy-btn:hover {
+      background: #b89cff;
+      transform: translateY(-1px);
+    }
+
     /* mobile tweaks */
     @media (max-width: 500px) {
       .input-group {
         flex-direction: column;
       }
-      input, button {
+      input, select, button {
         width: 100%;
       }
       .logo {
@@ -163,9 +213,14 @@
         margin-left: 10px;
         font-size: 0.9rem;
       }
+      #result-container {
+        flex-direction: column;
+        gap: 10px;
+      }
     }
   </style>
 </head>
+
 <body>
   <!-- sticky navbar -->
   <div class="navbar">
@@ -186,17 +241,26 @@
 
       <img src="mascot.png" class="mascot">
 
-      <select id="category">
-  <option value="america">america</option>
-  <option value="ukraine">ukraine</option>
-  <option value="middle-east">middle east</option>
-</select>
+      <div class="input-group">
+        <select id="category">
+          <option value="america">america</option>
+          <option value="europe">europe</option>
+          <option value="russia">russia</option>
+          <option value="ukraine">ukraine</option>
+          <option value="china">china</option>
+          <option value="middle-east">middle east</option>
+          <option value="other">other</option>
+        </select>
 
-<input id="url" placeholder="paste full URL" />
+        <input id="url" placeholder="paste full URL" />
+        <button onclick="shorten()">shorten</button>
+      </div>
 
-<button onclick="shorten()">shorten</button>
-
-<p id="result"></p>
+      <!-- shortened URL result -->
+      <div id="result-container">
+        <span id="result"></span>
+        <button id="copy-btn" onclick="copyUrl()">copy</button>
+      </div>
 
       <a href="/news">
         <button class="news-button">view news feed ✧</button>
@@ -214,20 +278,33 @@
       </footer>
     </div>
   </div>
-</body>
+
   <script>
-async function shorten() {
-  const category = document.getElementById("category").value;
-  const url = document.getElementById("url").value;
+    async function shorten() {
+      const category = document.getElementById("category").value;
+      const url = document.getElementById("url").value;
 
-  const res = await fetch("/.netlify/functions/shorten", {
-    method: "POST",
-    body: JSON.stringify({ category, url })
-  });
+      if (!url) return alert("Please paste a URL!");
 
-  const data = await res.json();
+      const res = await fetch("/.netlify/functions/shorten", {
+        method: "POST",
+        body: JSON.stringify({ category, url })
+      });
 
-  document.getElementById("result").innerText = data.shortUrl;
-}
-</script>
+      const data = await res.json();
+
+      const resultContainer = document.getElementById("result-container");
+      const resultText = document.getElementById("result");
+      resultText.innerText = data.shortUrl;
+      resultContainer.style.display = "flex";
+    }
+
+    function copyUrl() {
+      const resultText = document.getElementById("result").innerText;
+      navigator.clipboard.writeText(resultText).then(() => {
+        alert("Copied to clipboard!");
+      });
+    }
+  </script>
+</body>
 </html>
