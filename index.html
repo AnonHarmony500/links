@@ -7,14 +7,12 @@
   <link rel="icon" type="image/png" href="favicon1.png">
 
   <style>
-    /* body & layout */
     body {
       margin: 0;
       font-family: "Segoe UI", sans-serif;
       background: linear-gradient(135deg, #ffcce6, #f3d9ff, #d6f0ff);
     }
 
-    /* sticky navbar */
     .navbar {
       position: sticky;
       top: 0;
@@ -56,7 +54,6 @@
       text-shadow: 0 0 8px rgba(255, 138, 203, 0.6);
     }
 
-    /* main container */
     .container {
       max-width: 500px;
       width: 90%;
@@ -91,7 +88,6 @@
       color: #666;
     }
 
-    /* input group (dropdown + input + button) */
     .input-group {
       margin-top: 25px;
       display: flex;
@@ -140,6 +136,13 @@
       transform: translateY(-1px);
     }
 
+    .shorten-btn {
+      margin-top: 10px;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
     .news-button {
       margin-top: 15px;
       background: #a0c4ff;
@@ -166,7 +169,7 @@
       color: #aaa;
     }
 
-    /* shortened URL card */
+    /* shortened URL card, hidden by default */
     #result-container {
       display: none;
       margin-top: 20px;
@@ -198,7 +201,6 @@
       transform: translateY(-1px);
     }
 
-    /* mobile tweaks */
     @media (max-width: 500px) {
       .input-group {
         flex-direction: column;
@@ -222,7 +224,6 @@
 </head>
 
 <body>
-  <!-- sticky navbar -->
   <div class="navbar">
     <div class="nav-inner">
       <span class="logo">✧ Nemesis ✧</span>
@@ -233,12 +234,10 @@
     </div>
   </div>
 
-  <!-- main content -->
   <div class="container">
     <div class="card">
       <h1>Nemesis Links</h1>
       <p>curated signals, fragments, transmissions</p>
-
       <img src="mascot.png" class="mascot">
 
       <div class="input-group">
@@ -253,10 +252,10 @@
         </select>
 
         <input id="url" placeholder="paste full URL" />
-        <button onclick="shorten()">shorten</button>
       </div>
 
-      <!-- shortened URL result -->
+      <button class="shorten-btn" onclick="shorten()">shorten</button>
+
       <div id="result-container">
         <span id="result"></span>
         <button id="copy-btn" onclick="copyUrl()">copy</button>
@@ -283,8 +282,7 @@
     async function shorten() {
       const category = document.getElementById("category").value;
       const url = document.getElementById("url").value;
-
-      if (!url) return alert("Please paste a URL!");
+      if (!url) return;
 
       const res = await fetch("/.netlify/functions/shorten", {
         method: "POST",
@@ -292,18 +290,17 @@
       });
 
       const data = await res.json();
-
       const resultContainer = document.getElementById("result-container");
       const resultText = document.getElementById("result");
+
       resultText.innerText = data.shortUrl;
       resultContainer.style.display = "flex";
     }
 
     function copyUrl() {
       const resultText = document.getElementById("result").innerText;
-      navigator.clipboard.writeText(resultText).then(() => {
-        alert("Copied to clipboard!");
-      });
+      navigator.clipboard.writeText(resultText);
+      // no alert popup anymore
     }
   </script>
 </body>
