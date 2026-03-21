@@ -1,5 +1,5 @@
 exports.handler = async (event) => {
-  const path = event.rawUrl.split("/").pop();
+  const path = event.path.split("/").pop();
 
   const BIN_ID = "69beeb75b7ec241ddc8d1815";
   const API_KEY = "$2a$10$Fk35Luoxc3X.LjEWROkpI.hrsnL0KYwRNlBJbOACT9iMbPAv/t7M.";
