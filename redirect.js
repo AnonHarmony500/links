@@ -11,7 +11,7 @@ exports.handler = async (event) => {
   });
 
   const data = await res.json();
-  const links = data.record.links;
+  const links = data.record?.links || {};
 
   if (links[path]) {
     return {
