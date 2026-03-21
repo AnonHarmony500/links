@@ -121,8 +121,15 @@
     }
 
     button:hover {
-      background: #b89cff;
       transform: translateY(-1px);
+    }
+
+    .shorten-btn {
+      background: #ffb3d9;
+    }
+
+    .shorten-btn:hover {
+      background: #ff99cc;
     }
 
     .news-button {
@@ -134,7 +141,6 @@
       background: #89b4ff;
     }
 
-    /* result container hidden by default */
     #result-container {
       display: none;
       margin-top: 15px;
@@ -152,23 +158,12 @@
     }
 
     #copy-btn {
-      background: #c77dff;
+      background: #ffb3ff; /* cute pastel pink */
+      transition: background 0.2s ease;
     }
 
     #copy-btn:hover {
-      background: #a855f7;
-    }
-
-    #copy-tooltip {
-      display: none;
-      background: #ffb3d9;
-      color: white;
-      padding: 3px 6px;
-      border-radius: 6px;
-      font-size: 0.75rem;
-      font-weight: bold;
-      opacity: 0;
-      transition: opacity 0.3s ease;
+      background: #ffa3ff; /* lighter pink on hover */
     }
 
     .links {
@@ -239,13 +234,12 @@
 
         <input id="url" placeholder="paste full URL" />
 
-        <button onclick="shorten()">shorten</button>
+        <button class="shorten-btn" onclick="shorten()">shorten</button>
       </div>
 
       <div id="result-container">
         <span id="result"></span>
-        <button id="copy-btn" onclick="copyUrl()">copy</button>
-        <span id="copy-tooltip">✨ Copied! ✨</span>
+        <button id="copy-btn" onclick="copyUrl()">Copy</button>
       </div>
 
       <a href="/news">
@@ -283,6 +277,7 @@ async function shorten() {
       const resultText = document.getElementById("result");
       resultText.innerText = data.shortUrl;
       resultContainer.style.display = "flex"; // show result + copy
+      document.getElementById("copy-btn").innerText = "Copy"; // reset button text
     }
   } catch (err) {
     console.error("Error shortening URL:", err);
@@ -293,14 +288,12 @@ function copyUrl() {
   const resultText = document.getElementById("result").innerText;
   navigator.clipboard.writeText(resultText);
 
-  const tooltip = document.getElementById("copy-tooltip");
-  tooltip.style.display = "inline";
-  tooltip.style.opacity = 1;
+  const copyBtn = document.getElementById("copy-btn");
+  copyBtn.innerText = "Copied!";
 
   setTimeout(() => {
-    tooltip.style.opacity = 0;
-    setTimeout(() => tooltip.style.display = "none", 300);
-  }, 1000);
+    copyBtn.innerText = "Copy";
+  }, 1500); // revert after 1.5 seconds
 }
 </script>
 </body>
