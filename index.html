@@ -4,15 +4,16 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Nemesis Links</title>
-  <link rel="icon" type="image/png" href="favicon1.png">
-
+  <link rel="icon" type="image/png" href="/favicon1.png">
   <style>
+    /* body and layout */
     body {
       margin: 0;
       font-family: "Segoe UI", sans-serif;
       background: linear-gradient(135deg, #ffcce6, #f3d9ff, #d6f0ff);
     }
 
+    /* sticky navbar */
     .navbar {
       position: sticky;
       top: 0;
@@ -54,10 +55,11 @@
       text-shadow: 0 0 8px rgba(255, 138, 203, 0.6);
     }
 
+    /* main container */
     .container {
       max-width: 500px;
       width: 90%;
-      margin: 100px auto 50px;
+      margin: 100px auto 50px; /* push below navbar */
     }
 
     .card {
@@ -91,33 +93,20 @@
     .input-group {
       margin-top: 25px;
       display: flex;
+      flex-direction: column;
       gap: 10px;
-      flex-wrap: wrap;
+      align-items: center;
     }
 
-    .input-group select,
-    .input-group input {
-      flex: 1;
-      padding: 12px;
+    select, input {
+      width: 80%;
+      padding: 10px;
       border-radius: 12px;
       border: none;
       outline: none;
       font-size: 0.95rem;
-    }
-
-    select {
-      background: #ffd6f0;
-      color: #5a5a7a;
-      font-weight: bold;
-      transition: 0.2s ease;
-    }
-
-    select:focus {
-      box-shadow: 0 0 10px rgba(255, 138, 203, 0.6);
-    }
-
-    input {
       background: #ffffffaa;
+      text-align: center;
     }
 
     button {
@@ -136,13 +125,6 @@
       transform: translateY(-1px);
     }
 
-    .shorten-btn {
-      margin-top: 10px;
-      display: block;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
     .news-button {
       margin-top: 15px;
       background: #a0c4ff;
@@ -150,6 +132,43 @@
 
     .news-button:hover {
       background: #89b4ff;
+    }
+
+    /* result container hidden by default */
+    #result-container {
+      display: none;
+      margin-top: 15px;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+    }
+
+    #result {
+      background: #ffffffcc;
+      padding: 8px 12px;
+      border-radius: 10px;
+      font-weight: bold;
+      color: #5a5a7a;
+    }
+
+    #copy-btn {
+      background: #c77dff;
+    }
+
+    #copy-btn:hover {
+      background: #a855f7;
+    }
+
+    #copy-tooltip {
+      display: none;
+      background: #ffb3d9;
+      color: white;
+      padding: 3px 6px;
+      border-radius: 6px;
+      font-size: 0.75rem;
+      font-weight: bold;
+      opacity: 0;
+      transition: opacity 0.3s ease;
     }
 
     .links {
@@ -169,44 +188,13 @@
       color: #aaa;
     }
 
-    /* shortened URL card, hidden by default */
-    #result-container {
-      display: none;
-      margin-top: 20px;
-      background: #ffd6f0;
-      padding: 15px;
-      border-radius: 12px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-weight: bold;
-      color: #5a5a7a;
-      box-shadow: 0 0 10px rgba(255, 138, 203, 0.6);
-      word-break: break-all;
-    }
-
-    #copy-btn {
-      padding: 6px 10px;
-      border-radius: 8px;
-      background: #ffb3d9;
-      border: none;
-      color: white;
-      font-weight: bold;
-      cursor: pointer;
-      transition: 0.2s ease;
-    }
-
-    #copy-btn:hover {
-      background: #b89cff;
-      transform: translateY(-1px);
-    }
-
+    /* mobile tweaks */
     @media (max-width: 500px) {
       .input-group {
-        flex-direction: column;
-      }
-      input, select, button {
         width: 100%;
+      }
+      select, input, button {
+        width: 90%;
       }
       .logo {
         font-size: 0.9rem;
@@ -215,15 +203,11 @@
         margin-left: 10px;
         font-size: 0.9rem;
       }
-      #result-container {
-        flex-direction: column;
-        gap: 10px;
-      }
     }
   </style>
 </head>
-
 <body>
+  <!-- sticky navbar -->
   <div class="navbar">
     <div class="nav-inner">
       <span class="logo">✧ Nemesis ✧</span>
@@ -234,10 +218,12 @@
     </div>
   </div>
 
+  <!-- main content -->
   <div class="container">
     <div class="card">
       <h1>Nemesis Links</h1>
       <p>curated signals, fragments, transmissions</p>
+
       <img src="mascot.png" class="mascot">
 
       <div class="input-group">
@@ -252,13 +238,14 @@
         </select>
 
         <input id="url" placeholder="paste full URL" />
-      </div>
 
-      <button class="shorten-btn" onclick="shorten()">shorten</button>
+        <button onclick="shorten()">shorten</button>
+      </div>
 
       <div id="result-container">
         <span id="result"></span>
         <button id="copy-btn" onclick="copyUrl()">copy</button>
+        <span id="copy-tooltip">✨ Copied! ✨</span>
       </div>
 
       <a href="/news">
@@ -278,30 +265,43 @@
     </div>
   </div>
 
-  <script>
-    async function shorten() {
-      const category = document.getElementById("category").value;
-      const url = document.getElementById("url").value;
-      if (!url) return;
+<script>
+async function shorten() {
+  const category = document.getElementById("category").value;
+  const url = document.getElementById("url").value.trim();
+  if (!url) return; // do nothing if empty
 
-      const res = await fetch("/.netlify/functions/shorten", {
-        method: "POST",
-        body: JSON.stringify({ category, url })
-      });
+  try {
+    const res = await fetch("/.netlify/functions/shorten", {
+      method: "POST",
+      body: JSON.stringify({ category, url })
+    });
+    const data = await res.json();
 
-      const data = await res.json();
+    if (data.shortUrl) {
       const resultContainer = document.getElementById("result-container");
       const resultText = document.getElementById("result");
-
       resultText.innerText = data.shortUrl;
-      resultContainer.style.display = "flex";
+      resultContainer.style.display = "flex"; // show result + copy
     }
+  } catch (err) {
+    console.error("Error shortening URL:", err);
+  }
+}
 
-    function copyUrl() {
-      const resultText = document.getElementById("result").innerText;
-      navigator.clipboard.writeText(resultText);
-      // no alert popup anymore
-    }
-  </script>
+function copyUrl() {
+  const resultText = document.getElementById("result").innerText;
+  navigator.clipboard.writeText(resultText);
+
+  const tooltip = document.getElementById("copy-tooltip");
+  tooltip.style.display = "inline";
+  tooltip.style.opacity = 1;
+
+  setTimeout(() => {
+    tooltip.style.opacity = 0;
+    setTimeout(() => tooltip.style.display = "none", 300);
+  }, 1000);
+}
+</script>
 </body>
 </html>
