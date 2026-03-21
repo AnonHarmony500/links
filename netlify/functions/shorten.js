@@ -37,7 +37,7 @@ exports.handler = async (event) => {
   return {
     statusCode: 200,
     body: JSON.stringify({
-      shortUrl: `https://yourdomain.com/${code}`
+      shortUrl: `https://nemesisharmony.com/${code}`
     })
   };
 };
