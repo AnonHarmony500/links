@@ -1,2 +1,2 @@
 /news /news.html 200
-/* /.netlify/functions/redirect 200
+/* /.netlify/functions/redirect/:splat 200
