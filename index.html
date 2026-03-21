@@ -186,10 +186,17 @@
 
       <img src="mascot.png" class="mascot">
 
-      <div class="input-group">
-        <input placeholder="paste link (not functional yet honey <3)" />
-        <button>shorten</button>
-      </div>
+      <select id="category">
+  <option value="america">america</option>
+  <option value="ukraine">ukraine</option>
+  <option value="middle-east">middle east</option>
+</select>
+
+<input id="url" placeholder="paste full URL" />
+
+<button onclick="shorten()">shorten</button>
+
+<p id="result"></p>
 
       <a href="/news">
         <button class="news-button">view news feed ✧</button>
@@ -208,4 +215,19 @@
     </div>
   </div>
 </body>
+  <script>
+async function shorten() {
+  const category = document.getElementById("category").value;
+  const url = document.getElementById("url").value;
+
+  const res = await fetch("/.netlify/functions/shorten", {
+    method: "POST",
+    body: JSON.stringify({ category, url })
+  });
+
+  const data = await res.json();
+
+  document.getElementById("result").innerText = data.shortUrl;
+}
+</script>
 </html>
